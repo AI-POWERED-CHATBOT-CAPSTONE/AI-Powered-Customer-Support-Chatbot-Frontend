@@ -2,7 +2,7 @@ import ChatInput from "@/components/chat-panel/chat-input";
 
 function ChatInitializer() {
     return (
-        <div className={"flex justify-center items-center h-full"}>
+        <div className={"h-full"}>
             <ChatInput />
         </div>
     )
