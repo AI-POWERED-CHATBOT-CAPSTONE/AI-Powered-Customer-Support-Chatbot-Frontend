@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe066c5d-8758-4b09-b738-a7210db2443c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/chat-panel/chat-bubble.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/chat/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/chat/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/chat-panel/chat-initializer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/chat-panel/chat-initializer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/chat-panel/chat-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/chat-panel/chat-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/chat-panel/chat-thread.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/chat-panel/chat-thread.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/input-group.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input-group.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="fe066c5d-8758-4b09-b738-a7210db2443c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +71,7 @@
       <updated>1759553310330</updated>
       <workItem from="1759553311513" duration="18842000" />
       <workItem from="1759587834253" duration="16000" />
-      <workItem from="1759624707588" duration="5383000" />
+      <workItem from="1759624707588" duration="5678000" />
     </task>
     <servers />
   </component>

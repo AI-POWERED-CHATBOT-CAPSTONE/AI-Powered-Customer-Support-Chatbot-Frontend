@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI-Powered-Customer-Support-Chatbot
+An intelligent 24/7 virtual assistant that answers FAQs, guides students on admissions, registration, and campus services, and streamlines support at Memorial University of Newfoundland, improving accessibility and reducing wait times.
 
 ## Getting Started
 
