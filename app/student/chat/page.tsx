@@ -1,7 +1,7 @@
-import ChatInput from "@/components/chat-panel/chat-input";
 import ChatBubble from "@/components/chat-panel/chat-bubble";
+import ChatInput from "@/components/chat-panel/chat-input";
 
-function ChatThread() {
+function ClientChatPage() {
     return (
         <div className="flex flex-col h-screen py-12">
             <div className="flex-1 overflow-y-auto px-4 py-6" id="chat-container">
@@ -23,4 +23,4 @@ function ChatThread() {
     )
 }
 
-export default ChatThread
+export default ClientChatPage;

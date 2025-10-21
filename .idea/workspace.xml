@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe066c5d-8758-4b09-b738-a7210db2443c" name="Changes" comment="" />
+    <list default="true" id="fe066c5d-8758-4b09-b738-a7210db2443c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/admin/chat/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/admin/chat/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/student/chat/actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/nav/admin-nav.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/sources/source-actions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/sources/source-list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/sources/sources-panel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/tickets/tickets-panel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/panel-head.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/chat/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/chat/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/chat/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/chat-panel/chat-thread.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/app-logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/app-logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/input-group.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input-group.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/label.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/website/get-started.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/website/get-started.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth0.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth0.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,21 +54,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/danielkwakye/Documents/NextJS Workspace/mun-ai-agent-platform",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/danielkwakye/Documents/NextJS Workspace/mun-ai-agent-platform/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/danielkwakye/Documents/NextJS Workspace/mun-ai-agent-platform&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/danielkwakye/Documents/NextJS Workspace/mun-ai-agent-platform/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app" />
@@ -71,7 +96,12 @@
       <updated>1759553310330</updated>
       <workItem from="1759553311513" duration="18842000" />
       <workItem from="1759587834253" duration="16000" />
-      <workItem from="1759624707588" duration="5678000" />
+      <workItem from="1759624707588" duration="6254000" />
+      <workItem from="1759846107217" duration="3398000" />
+      <workItem from="1760478168095" duration="1121000" />
+      <workItem from="1760548311303" duration="622000" />
+      <workItem from="1760711689924" duration="6000" />
+      <workItem from="1761026132373" duration="6631000" />
     </task>
     <servers />
   </component>
