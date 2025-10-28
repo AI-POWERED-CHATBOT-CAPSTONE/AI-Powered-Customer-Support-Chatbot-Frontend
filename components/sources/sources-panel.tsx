@@ -6,7 +6,8 @@ import {Button} from "@/components/ui/button";
 import AddFilesDialog from "@/components/sources/add-files-dialog";
 import {useRef} from "react";
 import AddWebsiteDialog from "@/components/sources/add-website-dialog";
-import {DialogImperative} from "@/lib/utils";
+import {DialogImperative, queryClient} from "@/lib/utils";
+import {QueryClientProvider} from "@tanstack/react-query";
 
 export default function SourcesPanel() {
 
@@ -21,7 +22,8 @@ export default function SourcesPanel() {
     }
 
     return (
-        <div className={"bg-white h-full w-full rounded-lg space-y-8"}>
+        <QueryClientProvider client={queryClient} >
+            <div className={"bg-white h-full w-full rounded-lg space-y-8"}>
             <div className={"py-2 px-4 flex items-center justify-between border-b"}>
                 <TypographySmall className={"font-bold text-red-500"}>Sources</TypographySmall>
                 <div className={"flex divide-x"}>
@@ -40,5 +42,6 @@ export default function SourcesPanel() {
             </div>
 
         </div>
+        </QueryClientProvider>
     )
 }

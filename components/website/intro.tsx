@@ -7,7 +7,7 @@ function Intro() {
     return (
         <div className={"flex flex-col gap-5 "}>
             <DotLottieReact
-                src="https://lottie.host/8356ee4e-382d-4a5f-8c0b-58e76f9cc05f/VYUpTLmp2f.lottie"
+                src="https://lottie.host/a9c36aca-befd-440e-8989-ab33000a5c89/4OeNVaIWMm.lottie"
                 loop
                 autoplay
             />

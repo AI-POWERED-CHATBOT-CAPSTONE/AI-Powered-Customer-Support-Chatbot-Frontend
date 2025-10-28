@@ -5,28 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe066c5d-8758-4b09-b738-a7210db2443c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/admin/chat/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/chat/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/student/chat/actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/nav/admin-nav.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/sources/source-actions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/sources/source-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/sources/sources-panel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/tickets/tickets-panel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ui/panel-head.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/db.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/models/chat-model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/models/message-model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/models/source-model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/models/user-model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/api-client.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/use-admin-chat-store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/use-data-sources-store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/use-student-chat-store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/chat/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/chat/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/chat/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/chat-panel/chat-thread.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/app-logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/app-logo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/avatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/input-group.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input-group.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/label.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/website/get-started.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/website/get-started.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth0.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth0.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/chat/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/student/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sources/add-files-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/add-files-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sources/add-website-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/add-website-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sources/sources-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/sources-panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/website/intro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/website/intro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -38,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -59,7 +56,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/danielkwakye/Documents/NextJS Workspace/mun-ai-agent-platform&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/danielkwakye/Documents/NextJS Workspace/mun-ai-agent-platform/components/ui&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -71,6 +68,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/ui" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/lib" />
@@ -101,7 +99,11 @@
       <workItem from="1760478168095" duration="1121000" />
       <workItem from="1760548311303" duration="622000" />
       <workItem from="1760711689924" duration="6000" />
-      <workItem from="1761026132373" duration="6631000" />
+      <workItem from="1761026132373" duration="13182000" />
+      <workItem from="1761076423511" duration="1881000" />
+      <workItem from="1761325194329" duration="1188000" />
+      <workItem from="1761351811503" duration="4882000" />
+      <workItem from="1761665526701" duration="10164000" />
     </task>
     <servers />
   </component>

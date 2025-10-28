@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import "../database/db"
 import "./globals.css";
 import React from "react";
 import { Questrial } from 'next/font/google'
+import {Toaster} from "@/components/ui/sonner";
 
 const questrial = Questrial({
     weight: "400",
@@ -23,7 +25,8 @@ export default function RootLayout({
       <body
         className={questrial.className}
       >
-        {children}
+         {children}
+        <Toaster />
       </body>
     </html>
   );

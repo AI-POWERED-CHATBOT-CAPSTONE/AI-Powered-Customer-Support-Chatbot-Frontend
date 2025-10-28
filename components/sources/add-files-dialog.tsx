@@ -9,10 +9,14 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog"
-import {ForwardedRef, forwardRef, useCallback, useImperativeHandle, useState} from "react";
-import FileSelector from "@/components/ui/file-selector";
+import {ForwardedRef, forwardRef, useCallback, useImperativeHandle, useRef, useState} from "react";
+import FileSelector, {FileSelectorImperatives} from "@/components/ui/file-selector";
 import { useForm} from "react-hook-form";
-import {DialogImperative} from "@/lib/utils";
+import {axiosErrorHandler, DialogImperative} from "@/lib/utils";
+import {useMutation} from "@tanstack/react-query";
+import {addFilesAction} from "@/app/admin/chat/actions";
+import {LoaderCircleIcon} from "lucide-react";
+import {toast} from "sonner";
 
 type AddFilesFormInput = {
     files: File[],
@@ -21,6 +25,7 @@ type AddFilesFormInput = {
 export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImperative>) {
 
     const [open, setOpen] = useState<boolean>(false)
+    const fileSelectorRef = useRef<FileSelectorImperatives|null>(null)
 
     useImperativeHandle(ref, () => {
         return {
@@ -28,6 +33,18 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
                 setOpen(true)
             },
         }
+    })
+
+    const { mutate, isPending } = useMutation({
+        mutationKey: ['add-files'],
+        mutationFn: (formData: FormData) => addFilesAction(formData),
+        onSuccess: async (res) => {
+            console.log("response:", res)
+            fileSelectorRef?.current?.clear()
+            toast(res.message)
+            setOpen(false)
+        },
+        onError: axiosErrorHandler
     })
 
     const {
@@ -48,8 +65,14 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
 
         // submit file
         console.log("ready to submit ...")
+        const formData = new FormData();
+        // formData.append("title", data.title);
+        data.files.forEach((file) => {
+            formData.append("files", file); // multer will collect them into an array
+        });
+        mutate(formData)
 
-    }, [setError])
+    }, [mutate, setError])
 
     const onFilesChange = useCallback((files: File[]) => {
         console.log("files change: length=>", files.length)
@@ -59,7 +82,8 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
 
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+
+            <Dialog open={open} onOpenChange={setOpen}>
 
             <DialogContent className="">
                 <form onSubmit={handleSubmit(submitHandler)}>
@@ -71,17 +95,19 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
                         </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4">
-                        <FileSelector onChange={onFilesChange}/>
+                        <FileSelector ref={fileSelectorRef} onChange={onFilesChange}/>
                     </div>
                     <DialogFooter>
                         <DialogClose asChild>
                             <Button type={"button"} variant="outline">Cancel</Button>
                         </DialogClose>
-                        <Button type="submit">Save changes</Button>
+                        <Button type="submit" disabled={isPending}>
+                            { isPending ? <LoaderCircleIcon className={"animate-spin"} /> : <span>Save changes</span>}
+                        </Button>
                     </DialogFooter>
                 </form>
             </DialogContent>
 
         </Dialog>
- )
+    )
 })
