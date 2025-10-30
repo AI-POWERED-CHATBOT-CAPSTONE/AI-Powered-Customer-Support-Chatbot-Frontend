@@ -56,14 +56,20 @@ jobs: # By default, jobs run in parallel
         needs: build
         runs-on: ubuntu-latest
         steps:
-            -  name: Get build artifacts
-               uses: actions/download-artifact@v4
-               with:
-                 name: dist-files
+            - name: Download build artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: dist-files
+                path: ./dist
 
-            - name: Output contents
-              run: ls
-
-            - name: Deploy
-              run: echo "Deploying..."
+            -  name: List downloaded files
+               run: |
+                echo "✅ Build artifact downloaded successfully."
+                echo "Contents of ./dist:"
+                ls -la ./dist
+            - name: Simulate Deployment
+              run: |
+                echo "🚀 Simulated deployment started..."
+                sleep 2
+                echo "✅ Deployment completed successfully (simulation)."
 
