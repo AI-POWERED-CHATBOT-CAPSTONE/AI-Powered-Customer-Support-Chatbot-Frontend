@@ -63,6 +63,9 @@ jobs: # By default, jobs run in parallel
         - name: Build website
           run: npm run build
 
+        - name: List folders
+          run: ls -a
+
         - name: Upload artifacts
           uses: actions/upload-artifact@v4  
           with: 
