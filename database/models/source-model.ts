@@ -1,6 +1,6 @@
 import {Schema, model, models} from 'mongoose';
 
-interface ISource {
+export interface ISource {
     sourceId: string
     sourceName?: string,
     sourceType?: string,

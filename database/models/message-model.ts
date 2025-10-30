@@ -1,6 +1,6 @@
 import {Schema, model, Types, models} from 'mongoose';
 
-interface IMessage {
+export interface IMessage {
     chatId?: Types.ObjectId,
     text: string;
 }

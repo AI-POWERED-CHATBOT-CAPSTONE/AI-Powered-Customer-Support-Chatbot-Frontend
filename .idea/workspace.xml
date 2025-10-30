@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe066c5d-8758-4b09-b738-a7210db2443c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/database/db.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/models/chat-model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/models/message-model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/models/source-model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/models/user-model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/api-client.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/use-admin-chat-store.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/use-data-sources-store.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/use-student-chat-store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/test-branch.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/test-build-deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/chat/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/student/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sources/add-files-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/add-files-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sources/add-website-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/add-website-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sources/sources-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/sources-panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/website/intro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/website/intro.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +85,10 @@
       <workItem from="1761076423511" duration="1881000" />
       <workItem from="1761325194329" duration="1188000" />
       <workItem from="1761351811503" duration="4882000" />
-      <workItem from="1761665526701" duration="10164000" />
+      <workItem from="1761665526701" duration="11445000" />
+      <workItem from="1761725124143" duration="153000" />
+      <workItem from="1761736113077" duration="1189000" />
+      <workItem from="1761741601151" duration="2208000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,6 @@
 import {Schema, model, models} from 'mongoose';
 
-interface IChat {
+export interface IChat {
     title: string;
     escalated: boolean
 }
