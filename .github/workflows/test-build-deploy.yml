@@ -1,0 +1,25 @@
+name: "Test build & deploy"
+on: # this means we can trigger this workflow with push and manually on github dashboard
+    push:
+        branches: 
+            - main # main branch test, build and deploy in the main
+
+jobs: # By default, jobs run in parallel
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Get code # WE want to get the code into our ubuntu environment
+            uses: actions/checkout@v4
+
+          # ubuntu already has node js installed. so no need to reinstall it.
+          # else if you application relies on another package which is not pre installed you'll need to install it
+          - name: Install Node Js
+            uses: actions/setup-node@v4
+            with:
+              node-version: 20
+
+          - name: Install dependencies
+            run: npm ci # ci meaning use same packages in the packages-lock.json. However you could simply do `npm install`
+          
+          - name: Run our Tests on the runner
+            run: npm run test
