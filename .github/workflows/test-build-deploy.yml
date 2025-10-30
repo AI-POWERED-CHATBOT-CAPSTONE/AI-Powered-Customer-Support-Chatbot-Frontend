@@ -43,46 +43,48 @@ jobs: # By default, jobs run in parallel
     #            run: npm run build
 
     build:
-        needs: test
-        runs-on: ubuntu-latest
-        outputs: 
-            output-dist-files: ${{ steps.expose-artifact-name.outputs.files-name }} #output-dist-files is up to you. that's the name which will be exposed to other jobs
-      # So this is pointing to the step called expose-artifact-name, and reading the returned output name files-name
-        steps:
-            - name: Get code
-              uses: actions/checkout@v3
-          # Cache dependencies
-            - name: Cache dependencies
-              uses: actions/cache@v3
-              with:
-                path: ~/.npm # cach npm dependencies
-                key: deps-node-modules-${{ hashFiles('/package-lock.json') }} # hasfile package-lock.json helps the cache system know if dependencies have changed
+      needs: test
+      runs-on: ubuntu-latest
+      outputs: 
+        output-dist-files: ${{ steps.expose-artifact-name.outputs.files-name }}
+      steps:
+        - name: Get code
+          uses: actions/checkout@v3
 
-            - name: Install dependencies
-              run: npm ci
-            - name: Build website
-              run: npm run build
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v4  
-              with: 
-                name: dist-files # creates a new dist file folder and copy files and folders in the paths specified below
-                path: .next
-            - name: Expouts outputs # outputs are simple values that can be exposed to other jobs
-              id: expose-artifact-name 
-              run: echo 'files-name=[some-variable-here]' >> $GITHUB_OUTPUT
+        - name: Cache dependencies
+          uses: actions/cache@v3
+          with:
+            path: ~/.npm
+            key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+        - name: Install dependencies
+          run: npm ci
+
+        - name: Build website
+          run: npm run build
+
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v4  
+          with: 
+            name: dist-files
+            path: ./.next/
+
+        - name: Expose outputs
+          id: expose-artifact-name 
+          run: echo "files-name=dist-files" >> $GITHUB_OUTPUT
 
     deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            -  name: Get build artifacts
-               uses: actions/download-artifact@v4
-               with:
-                 name: dist-files
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download artifacts
+          uses: actions/download-artifact@v5
+          with:
+            name: dist-files
 
-            - name: Output contents
-              run: ls
+        - name: Output dist files name
+          run: echo "${{ needs.build.outputs.output-dist-files }}"
 
-            - name: Deploy
-              run: echo "Deploying..."
+        - name: Deploy
+          run: echo "Deploying..."
 
