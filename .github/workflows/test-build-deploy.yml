@@ -70,7 +70,7 @@ jobs: # By default, jobs run in parallel
           uses: actions/upload-artifact@v4  
           with: 
             name: dist-files
-            path: ./.next/
+            path: .next/
 
         - name: Expose outputs
           id: expose-artifact-name 
