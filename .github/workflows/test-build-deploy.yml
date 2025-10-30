@@ -23,66 +23,74 @@ jobs: # By default, jobs run in parallel
           
           - name: Run our Tests on the runner
             run: npm run test
-    # build:
-    #     needs: test
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Get code
-    #           uses: actions/checkout@v4
-    #         - name: Cache dependencies
-    #           id: cache
-    #           uses: actions/cache@v4
-    #           with:
-    #             path: ~/.npm
-    #             key: deps-node-modules-${{ hashFiles('/package-lock.json') }}
+   name: Test, Build and Deploy
 
-    #         -  name: Install dependencies
-    #            run: npm ci
-    #         -  name: Build website
-    #            id: build-website
-    #            run: npm run build
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-    build:
-        needs: test
-        runs-on: ubuntu-latest
-        outputs: 
-            output-dist-files: ${{ steps.expose-artifact-name.outputs.files-name }} #output-dist-files is up to you. that's the name which will be exposed to other jobs
-      # So this is pointing to the step called expose-artifact-name, and reading the returned output name files-name
-        steps:
-            - name: Get code
-              uses: actions/checkout@v3
-          # Cache dependencies
-            - name: Cache dependencies
-              uses: actions/cache@v3
-              with:
-                path: ~/.npm # cach npm dependencies
-                key: deps-node-modules-${{ hashFiles('/package-lock.json') }} # hasfile package-lock.json helps the cache system know if dependencies have changed
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./AI-Powered-Customer-Support-Chatbot-Frontend
+    steps:
+      - uses: actions/checkout@v3
 
-            - name: Install dependencies
-              run: npm ci
-            - name: Build website
-              run: npm run build
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v4  
-              with: 
-                name: dist-files # creates a new dist file folder and copy files and folders in the paths specified below
-                path: .next
-            - name: Expouts outputs # outputs are simple values that can be exposed to other jobs
-              id: expose-artifact-name 
-              run: echo 'files-name=[some-variable-here]' >> $GITHUB_OUTPUT
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            -  name: Get build artifacts
-               uses: actions/download-artifact@v4
-               with:
-                 name: dist-files
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Output contents
-              run: ls
+      - name: Run tests
+        run: npm run test -- --ci --watchAll=false
 
-            - name: Deploy
-              run: echo "Deploying..."
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./AI-Powered-Customer-Support-Chatbot-Frontend
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: AI-Powered-Customer-Support-Chatbot-Frontend/.next
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: ./dist
+
+      - name: List files in dist
+        run: ls -la dist
+
+      - name: Deploy
+        run: echo "Deploying build to production..."
+
 
