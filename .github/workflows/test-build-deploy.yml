@@ -1,0 +1,94 @@
+name: "Test build & deploy"
+on: # this means we can trigger this workflow with push and manually on github dashboard
+    push:
+        branches: 
+            - main # main branch test, build and deploy in the main
+
+jobs: # By default, jobs run in parallel
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Get code # WE want to get the code into our ubuntu environment
+            uses: actions/checkout@v4
+
+          # ubuntu already has node js installed. so no need to reinstall it.
+          # else if you application relies on another package which is not pre installed you'll need to install it
+          - name: Install Node Js
+            uses: actions/setup-node@v4
+            with:
+              node-version: 20
+
+          - name: Install dependencies
+            run: npm ci # ci meaning use same packages in the packages-lock.json. However you could simply do `npm install`
+          
+          - name: Run our Tests on the runner
+            run: npm run test
+    # build:
+    #     needs: test
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Get code
+    #           uses: actions/checkout@v4
+    #         - name: Cache dependencies
+    #           id: cache
+    #           uses: actions/cache@v4
+    #           with:
+    #             path: ~/.npm
+    #             key: deps-node-modules-${{ hashFiles('/package-lock.json') }}
+
+    #         -  name: Install dependencies
+    #            run: npm ci
+    #         -  name: Build website
+    #            id: build-website
+    #            run: npm run build
+
+    build:
+      needs: test
+      runs-on: ubuntu-latest
+      outputs: 
+        output-dist-files: ${{ steps.expose-artifact-name.outputs.files-name }}
+      steps:
+        - name: Get code
+          uses: actions/checkout@v3
+
+        - name: Cache dependencies
+          uses: actions/cache@v3
+          with:
+            path: ~/.npm
+            key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+        - name: Install dependencies
+          run: npm ci
+
+        - name: Build website
+          run: npm run build
+
+        - name: List folders
+          run: ls -a
+
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v4  
+          with: 
+            name: dist-files
+            path: ./.next/
+            include-hidden-files: true
+
+        - name: Expose outputs
+          id: expose-artifact-name 
+          run: echo "files-name=dist-files" >> $GITHUB_OUTPUT
+
+    deploy:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download artifacts
+          uses: actions/download-artifact@v5
+          with:
+            name: dist-files
+
+        - name: Output dist files name
+          run: echo "${{ needs.build.outputs.output-dist-files }}"
+
+        - name: Deploy
+          run: echo "Deploying..."
+
