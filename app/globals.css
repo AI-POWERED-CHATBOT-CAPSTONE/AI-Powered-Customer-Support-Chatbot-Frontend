@@ -110,6 +110,21 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Applies to all scrollbars globally */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

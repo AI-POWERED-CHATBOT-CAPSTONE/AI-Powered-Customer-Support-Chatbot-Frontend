@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {TypographyP} from "@/components/ui/typography";
 import {MoreHorizontalIcon} from "lucide-react";
+import {tempStudent} from "@/lib/constants";
 
 export default  function SidebarFooter() {
     return (
@@ -11,7 +12,7 @@ export default  function SidebarFooter() {
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div>
-                    <TypographyP>Daniel Kwakye</TypographyP>
+                    <TypographyP>{ tempStudent.email }</TypographyP>
                 </div>
             </div>
             <MoreHorizontalIcon />

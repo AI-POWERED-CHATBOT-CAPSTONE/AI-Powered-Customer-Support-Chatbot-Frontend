@@ -1,9 +1,19 @@
-import {Schema, model, models} from 'mongoose';
+import {Schema, model, models, Types} from 'mongoose';
 
 export interface ISource {
+    _id: Types.ObjectId;
     sourceId: string
     sourceName?: string,
     sourceType?: string,
+    createdAt?: Date,
+}
+
+export interface ISourceDTO {
+    _id: string
+    sourceId: string
+    sourceName?: string,
+    sourceType?: string,
+    createdAt?: Date,
 }
 
 const sourceSchema = new Schema<ISource>({
@@ -12,4 +22,4 @@ const sourceSchema = new Schema<ISource>({
     sourceType: String,
 }, { timestamps: true });
 
-export const SourceModel = models.User<ISource> ||  model<ISource>('Source', sourceSchema)
+export const SourceModel = models.Source<ISource> ||  model<ISource>('Source', sourceSchema)

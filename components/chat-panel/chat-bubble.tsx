@@ -1,16 +1,17 @@
 import {TypographyP} from "@/components/ui/typography";
 import React from "react";
+import {IMessageDTO} from "@/database/models/message-model";
 
-function ChatBubble({ children, isSender }: { children: React.ReactNode, isSender: boolean } ) {
+function ChatBubble({ children, isSender, sentBy = "student", message }: { children: React.ReactNode, isSender: boolean, sentBy?: string, message: IMessageDTO} ) {
 
-    if (!isSender) {
+    if (isSender) {
         return (
             <ResponseChatBubble> { children } </ResponseChatBubble>
         )
     }
 
     return (
-        <CurrentUserChatBubble > { children } </CurrentUserChatBubble>
+        <CurrentUserChatBubble  sentBy={sentBy} message={message}> { children } </CurrentUserChatBubble>
     )
 }
 
@@ -22,7 +23,7 @@ function ResponseChatBubble({ children }: { children: React.ReactNode }) {
 }
 
 // for sender
-function CurrentUserChatBubble({ children }: { children: React.ReactNode }) {
+function CurrentUserChatBubble({ children, sentBy, message }: { children: React.ReactNode, sentBy?: string, message: IMessageDTO }) {
     return (
         <div className="flex justify-end w-full px-4 py-2">
             <div
@@ -34,7 +35,16 @@ function CurrentUserChatBubble({ children }: { children: React.ReactNode }) {
           break-words
         "
             >
-                {children}
+                <span style={ {color: message.endedAI ? "darkred": "black" } }>{children}</span>
+                { sentBy !== "student" && (
+                    <p className={"pt-4 grid place-content-end text-sm"}>
+                        <span className={"inline-flex gap-2"}>
+                             <span>sent by:</span>
+                            { sentBy == "ai" && <span className={"text-red-500 font-bold uppercase"}>{sentBy}</span> }
+                            { sentBy == "admin" && <span className={"text-teal-500 font-bold uppercase"}>{sentBy}</span> }
+                        </span>
+                    </p>
+                )}
             </div>
         </div>
     )

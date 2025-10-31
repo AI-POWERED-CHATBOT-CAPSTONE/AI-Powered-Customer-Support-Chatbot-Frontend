@@ -8,8 +8,21 @@ import {
 import {TypographyH3} from "@/components/ui/typography";
 import Image from "next/image";
 import {Sparkles} from "lucide-react";
+import {useState} from "react";
+type Props = {
+    onSend?: (text: string) => void;
+    hasLabel?: boolean,
+    placeholder?: string
+}
+function ChatInput({ hasLabel = true, onSend, placeholder = "Ask MUN GPT..." }: Props ) {
 
-function ChatInput({ hasLabel = true }: { hasLabel?: boolean } ) {
+    const [text, setText] = useState("");
+
+    const onClickHandler = () => {
+        if (onSend) onSend(text);
+        setText("");
+    }
+
     return (
         <div className={"flex justify-center items-center"}>
             <div className="grid w-full max-w-3xl gap-6 ">
@@ -21,14 +34,17 @@ function ChatInput({ hasLabel = true }: { hasLabel?: boolean } ) {
                 )}
                 <InputGroup className={"rounded-lg shadow shadow-[#f7f5f3]"}>
                     <TextareaAutosize
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
                         id="chat-box"
                         data-slot="input-group-control"
                         className="flex field-sizing-content min-h-16 w-full resize-none rounded-lg bg-white  px-3 py-2.5 text-base transition-[color,box-shadow] outline-none md:text-sm"
-                        placeholder="Ask MUN GPT..."
+                        placeholder={placeholder}
                     />
                     <InputGroupAddon align="block-end">
                         <InputGroupButton className="ml-auto rounded-full" size="sm" variant="default"
-                                          disabled={true}>
+                                          onClick={onClickHandler}
+                                          disabled={text.length === 0} >
                             <span>Send</span>
                             <Sparkles/>
                         </InputGroupButton>

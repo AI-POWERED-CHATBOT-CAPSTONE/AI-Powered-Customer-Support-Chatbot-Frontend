@@ -13,7 +13,12 @@ import {ForwardedRef, forwardRef, useCallback, useImperativeHandle, useState} fr
 import { useForm} from "react-hook-form";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {DialogImperative} from "@/lib/utils";
+import {axiosErrorHandler, DialogImperative} from "@/lib/utils";
+import {useMutation} from "@tanstack/react-query";
+import {addFilesAction, addWebsiteAction} from "@/app/admin/chat/actions";
+import {toast} from "sonner";
+import {LoaderCircleIcon} from "lucide-react";
+import {useDataSourcesStore} from "@/store/use-data-sources-store";
 
 type AddWebsiteFormInput = {
     link: string,
@@ -22,6 +27,7 @@ type AddWebsiteFormInput = {
 export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogImperative>) {
 
     const [open, setOpen] = useState<boolean>(false)
+    const setEventCaller = useDataSourcesStore((state) => state.setEvent)
 
     useImperativeHandle(ref, () => {
         return {
@@ -31,9 +37,23 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
         }
     })
 
+    const { mutate, isPending } = useMutation({
+        mutationKey: ['add-website'],
+        mutationFn: (link: string) => addWebsiteAction(link),
+        onSuccess: async (res) => {
+            console.log("response:", res)
+            reset()
+            toast(res.message)
+            setEventCaller("website-added")
+            setOpen(false)
+        },
+        onError: axiosErrorHandler
+    })
+
     const {
         handleSubmit,
         register,
+        reset,
         formState: { errors },
     } = useForm<AddWebsiteFormInput>()
 
@@ -41,8 +61,10 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
         console.log("handle submit called", data)
         // submit file
         console.log("ready to submit ...")
+        setEventCaller(undefined)
+        mutate(data.link)
 
-    }, [])
+    }, [mutate, setEventCaller])
 
 
     return (
@@ -68,7 +90,9 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
                         <DialogClose asChild>
                             <Button type={"button"} variant="outline">Cancel</Button>
                         </DialogClose>
-                        <Button type="submit">Save changes</Button>
+                        <Button type="submit" disabled={isPending}>
+                            { isPending ? <LoaderCircleIcon className={"animate-spin"} /> : <span>Save changes</span>}
+                        </Button>
                     </DialogFooter>
                 </form>
             </DialogContent>

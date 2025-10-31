@@ -17,6 +17,7 @@ import {useMutation} from "@tanstack/react-query";
 import {addFilesAction} from "@/app/admin/chat/actions";
 import {LoaderCircleIcon} from "lucide-react";
 import {toast} from "sonner";
+import {useDataSourcesStore} from "@/store/use-data-sources-store";
 
 type AddFilesFormInput = {
     files: File[],
@@ -26,6 +27,7 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
 
     const [open, setOpen] = useState<boolean>(false)
     const fileSelectorRef = useRef<FileSelectorImperatives|null>(null)
+    const setEventCaller = useDataSourcesStore((state) => state.setEvent)
 
     useImperativeHandle(ref, () => {
         return {
@@ -42,6 +44,7 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
             console.log("response:", res)
             fileSelectorRef?.current?.clear()
             toast(res.message)
+            setEventCaller("files-added")
             setOpen(false)
         },
         onError: axiosErrorHandler
@@ -70,6 +73,8 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
         data.files.forEach((file) => {
             formData.append("files", file); // multer will collect them into an array
         });
+
+        setEventCaller(undefined)
         mutate(formData)
 
     }, [mutate, setError])
@@ -84,8 +89,7 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
     return (
 
             <Dialog open={open} onOpenChange={setOpen}>
-
-            <DialogContent className="">
+                <DialogContent className="">
                 <form onSubmit={handleSubmit(submitHandler)}>
                     <DialogHeader>
                         <DialogTitle>Add PDF Files</DialogTitle>
@@ -107,7 +111,6 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
                     </DialogFooter>
                 </form>
             </DialogContent>
-
-        </Dialog>
+            </Dialog>
     )
 })

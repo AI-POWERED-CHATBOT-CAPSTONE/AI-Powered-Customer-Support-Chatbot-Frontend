@@ -2,6 +2,7 @@ import AppLogo from "@/components/ui/app-logo";
 import {TypographyH4, TypographySmall} from "@/components/ui/typography";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import Link from "next/link";
+import {tempStudent, tempSupport} from "@/lib/constants";
 
 export default function AdminNav() {
     return (
@@ -17,8 +18,8 @@ export default function AdminNav() {
                             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <TypographySmall>Juliet Afolayan</TypographySmall>
-                        <Link href={"/"} className={"text-foreground font-bold text-sm text-red-500"}> Logout </Link>
+                        <TypographySmall>{ tempSupport.email} </TypographySmall>
+                        <Link href={"/"} className={"font-bold text-sm text-red-500"}> Logout </Link>
                     </div>
                 </div>
             </div>

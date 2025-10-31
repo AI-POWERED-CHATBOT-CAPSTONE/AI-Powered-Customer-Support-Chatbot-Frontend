@@ -1,3 +1,5 @@
+"use server"
+
 import { connect } from 'mongoose';
 import {UserModel} from "@/database/models/user-model";
 import {ai, tempStudent, tempSupport} from "@/lib/constants";
@@ -8,7 +10,10 @@ let isConnected = false; // global connection state
 
 export async function connectDB() {
 
-    if (isConnected) return;
+    if (isConnected) {
+        console.log("Database: Already Connected!!!");
+        return
+    }
 
     console.log("Database: Connecting...");
 
@@ -43,5 +48,5 @@ async function ensureSeedData() {
 }
 
 
-connectDB().catch(console.error);
+await connectDB().catch(console.error);
 
