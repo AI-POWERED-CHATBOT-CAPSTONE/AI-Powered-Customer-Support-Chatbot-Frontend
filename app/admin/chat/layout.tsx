@@ -1,7 +1,11 @@
+"use client"
+
 import React from "react";
 import AdminNav from "@/components/nav/admin-nav";
 import TicketsPanel from "@/components/tickets/tickets-panel";
 import SourcesPanel from "@/components/sources/sources-panel";
+import {QueryClientProvider} from "@tanstack/react-query";
+import {queryClient} from "@/lib/utils";
 
 export default function AdminChatLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
@@ -10,13 +14,19 @@ export default function AdminChatLayout({ children }: Readonly<{ children: React
             <div className={"pt-16 h-full"}>
                 <div className={"flex flex-row h-full gap-4 px-12 pb-8 pt-2"}>
                     <section className={"w-[30%] h-full"}>
-                        <TicketsPanel />
+                        <QueryClientProvider client={queryClient}>
+                            <TicketsPanel />
+                        </QueryClientProvider>
                     </section>
                     <section className={"w-[40%] h-full"}>
-                        {children}
+                        <QueryClientProvider client={queryClient}>
+                            {children}
+                        </QueryClientProvider>
                     </section>
                     <section className={"w-[30%] h-full"}>
-                        <SourcesPanel/>
+                        <QueryClientProvider client={queryClient} >
+                            <SourcesPanel/>
+                        </QueryClientProvider>
                     </section>
                 </div>
             </div>
