@@ -1,12 +1,14 @@
 import { create } from 'zustand'
+import {subscribeWithSelector} from "zustand/middleware";
 
 interface AdminChatState {
-    selectedChatId: string | undefined
-    selectChat: (chatId: string | undefined) => void
+    event: string | undefined
+    setEvent: (event: string | undefined) => void
 }
 
-
-export const useAdminChatStore = create<AdminChatState>()((set) => ({
-    selectedChatId: undefined,
-    selectChat: (chatId: string | undefined) => set(() => ({ selectedChatId: chatId })),
-}))
+export const useAdminChatStore = create<AdminChatState>()(subscribeWithSelector(
+    (set) => ({
+        event: undefined,
+        setEvent: (event: string | undefined) => set(() => ({ event: event })),
+    })
+))

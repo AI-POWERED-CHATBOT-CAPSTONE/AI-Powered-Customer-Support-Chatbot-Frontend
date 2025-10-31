@@ -1,12 +1,14 @@
 import { create } from 'zustand'
+import {subscribeWithSelector} from "zustand/middleware";
 
 interface StudentChatState {
-    selectedChatId: string | undefined
-    selectChat: (chatId: string | undefined) => void
+    event: string | undefined
+    setEvent: (event: string | undefined) => void
 }
 
-
-export const useStudentChatStore = create<StudentChatState>()((set) => ({
-    selectedChatId: undefined,
-    selectChat: (chatId: string | undefined) => set(() => ({ selectedChatId: chatId })),
-}))
+export const useStudentChatStore = create<StudentChatState>()(subscribeWithSelector(
+    (set) => ({
+        event: undefined,
+        setEvent: (event: string | undefined) => set(() => ({ event: event })),
+    })
+))
