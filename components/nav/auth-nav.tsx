@@ -5,7 +5,7 @@ function AuthNav() {
     return (
         <div className={"fixed w-full py-2 bg-red-50"}>
             <div className={"flex flex-row justify-between items-center container mx-auto"}>
-                <AppLogo />
+                <AppLogo subHeadingClassName={"text-sm"} />
                 <LogoutButton className={"text-foreground"} />
             </div>
         </div>

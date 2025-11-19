@@ -2,7 +2,8 @@
 
 import { connect } from 'mongoose';
 import {UserModel} from "@/database/models/user-model";
-import {ai, tempStudent, tempSupport} from "@/lib/constants";
+import {ai} from "@/lib/constants";
+import {auth0} from "@/lib/auth0";
 
 const connection = process.env.MONGO_DB_CONNECTION
 
@@ -31,12 +32,11 @@ export async function connectDB() {
 
 
 async function ensureSeedData() {
+
     console.log("Seeding initial users...");
 
     const usersToCreate = [
         { name: "MUNGPT", ...ai },
-        { name: "Dominic", ...tempStudent },
-        { name: "Sarah", ...tempSupport },
     ];
 
     for (const user of usersToCreate) {

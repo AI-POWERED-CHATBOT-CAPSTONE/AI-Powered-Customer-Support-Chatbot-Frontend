@@ -4,6 +4,7 @@ export interface IChat {
     _id: Types.ObjectId;
     title: string
     escalated: boolean
+    aiAllowedToRespond: boolean
     hasMessages: boolean
     studentId: string
 }
@@ -14,6 +15,7 @@ export interface IChatDTO {
     escalated: boolean
     hasMessages: boolean
     studentId: string
+    aiAllowedToRespond: boolean
 }
 
 const chatSchema = new Schema<IChat>({
@@ -22,7 +24,7 @@ const chatSchema = new Schema<IChat>({
     escalated: { type: Boolean, default: false },
     hasMessages: { type: Boolean, default: false },
     studentId: { type: String, required: true },
-
+    aiAllowedToRespond: { type: Boolean, default: true },
 }, { timestamps: true });
 
 export const ChatModel = models.Chat<IChat> ||  model<IChat>('Chat', chatSchema);

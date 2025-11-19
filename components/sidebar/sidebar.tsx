@@ -1,21 +1,23 @@
+"use client"
+
 import SidebarHeader from "@/components/sidebar/sidebar-header";
 import SidebarFooter from "@/components/sidebar/sidebar-footer";
 import Link from "next/link";
 import {useQuery} from "@tanstack/react-query";
-import {fetchChatMessages, fetchChatsConversations} from "@/app/student/chat/actions";
-import {tempStudent} from "@/lib/constants";
+import {fetchChatsConversations} from "@/app/student/chat/actions";
 import ListLoader from "@/components/ui/list-loader";
 import {queryClient} from "@/lib/utils";
 import {useEffect} from "react";
 import {useStudentChatStore} from "@/store/use-student-chat-store";
+import {useUser} from "@auth0/nextjs-auth0";
 
 export default function Sidebar() {
 
-
+    const { user } = useUser();
 
     const { isPending, data } = useQuery({
         queryKey: ['fetch-chat-conversations'],
-        queryFn: () => fetchChatsConversations(tempStudent.extId),
+        queryFn: () => fetchChatsConversations(user?.sub || ''),
     })
 
     console.log("sidebar called ...", data)

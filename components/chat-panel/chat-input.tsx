@@ -40,6 +40,15 @@ function ChatInput({ hasLabel = true, onSend, placeholder = "Ask MUN GPT..." }: 
                         data-slot="input-group-control"
                         className="flex field-sizing-content min-h-16 w-full resize-none rounded-lg bg-white  px-3 py-2.5 text-base transition-[color,box-shadow] outline-none md:text-sm"
                         placeholder={placeholder}
+                        onKeyDown={(e) => {
+                            // Enter without Shift → SEND
+                            if (e.key === "Enter" && !e.shiftKey) {
+                                e.preventDefault(); // stops newline
+                                if (text.trim().length > 0) {
+                                    onClickHandler();
+                                }
+                            }
+                        }}
                     />
                     <InputGroupAddon align="block-end">
                         <InputGroupButton className="ml-auto rounded-full" size="sm" variant="default"

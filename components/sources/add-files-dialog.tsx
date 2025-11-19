@@ -89,7 +89,7 @@ export default forwardRef(function AddFilesDialog(_, ref: ForwardedRef<DialogImp
     return (
 
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="">
+                <DialogContent>
                 <form onSubmit={handleSubmit(submitHandler)}>
                     <DialogHeader>
                         <DialogTitle>Add PDF Files</DialogTitle>

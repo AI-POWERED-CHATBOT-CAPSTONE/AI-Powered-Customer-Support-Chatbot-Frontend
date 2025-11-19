@@ -8,11 +8,12 @@ import ChatInput from "@/components/chat-panel/chat-input";
 import {useSearchParams} from "next/navigation";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {axiosErrorHandler, queryClient} from "@/lib/utils";
-import {tempSupport} from "@/lib/constants";
 import {fetchEscalatedMessagesAction, sendAdminMessageAction} from "@/app/admin/chat/actions";
 import {useAdminChatStore} from "@/store/use-admin-chat-store";
 import ListLoader from "@/components/ui/list-loader";
 import {IMessageDTO} from "@/database/models/message-model";
+import {useUser} from "@auth0/nextjs-auth0";
+import {TypographyP} from "@/components/ui/typography";
 
 function AdminChatPage() {
 
@@ -29,6 +30,7 @@ function AdminChatPageView() {
     const chatId = searchParams.get('chatId')
     const setAdminEventCaller = useAdminChatStore((state) => state.setEvent)
     const containerRef = useRef<HTMLDivElement>(null)
+    const { user } = useUser()
 
     const { isPending, data } = useQuery({
         queryKey: ['fetch-escalated-chat-messages', chatId],
@@ -45,7 +47,7 @@ function AdminChatPageView() {
     const { mutate, isPending: isPendingSendMessage } = useMutation({
         mutationKey: ['send-admin-message'],
         mutationFn: (request: { chatId: string, text: string }) => sendAdminMessageAction({
-            chatId: request.chatId, adminId: tempSupport.extId, message: request.text
+            chatId: request.chatId, adminId: user?.sub || "", message: request.text
         }),
         onSuccess: async (res) => {
             console.log("response:", res)
@@ -101,13 +103,13 @@ function AdminChatPageView() {
                     <ul className={"max-w-3xl mx-auto list-none space-y-8"}>
                         {
                             data && data.map((item: IMessageDTO) => {
-                                let msg = item.text
-                                if (item.endedAI) {
-                                    msg = "This conversation was escalated to the support team"
-                                }
+                                const msg = item.text
+                                // if (item.causedEscalation) {
+                                //     msg = "This conversation was escalated to the support team"
+                                // }
                                 return (
                                     <li key={item._id}>
-                                        <ChatBubble isSender={item.sentBy === "student"} sentBy={item.sentBy} message={item}>{ msg }</ChatBubble>
+                                        <ChatBubble isSender={item.sentBy !== "student"} sentBy={item.sentBy} message={item}>{ msg }</ChatBubble>
                                     </li>
                                 )
                             })
@@ -120,7 +122,10 @@ function AdminChatPageView() {
                             <ListLoader className={""}>Sending ....</ListLoader>
                         </div>)
                     }
-                    <ChatInput hasLabel={false} onSend={sendMessageHandler} placeholder={"Send message..."}/>
+                    { chatId ? (
+                        <ChatInput hasLabel={false} onSend={sendMessageHandler} placeholder={"Send message..."}/>
+                    ): <TypographyP className={"text-center py-8 text-red-500"}>Select a conversation on the left sidebar to chat</TypographyP>}
+
                 </div>
             </div>
         </div>

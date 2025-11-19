@@ -27,7 +27,7 @@ export const sendMessage = async( payload: { chatId: string, studentId: string, 
     })
 
     // if chat has been excalated, no need for ai response
-    if (chat.escalated) {
+    if (!chat.aiAllowedToRespond) {
         return
     }
 
@@ -36,10 +36,10 @@ export const sendMessage = async( payload: { chatId: string, studentId: string, 
     const { ai: aiResponseMessage, escalate } = res.data
 
     let aiText = aiResponseMessage
-    let aiResponseEnded = false
+    let escalationTriggered = false
     if (escalate == "yes") {
-        aiText = "Sorry, I don't have enough information to answer this question. I will disconnect now and connect you to a Support Agent"
-        aiResponseEnded = true
+        aiText = "Sorry, I don't have enough information to answer this question. I have notified a support agent to assit with your question"
+        escalationTriggered = true
         await ChatModel.findById(chat._id).updateOne({ escalated: true })
     }
 
@@ -49,7 +49,7 @@ export const sendMessage = async( payload: { chatId: string, studentId: string, 
         text: aiText,
         senderId: ai.extId,
         sentBy: "ai",
-        endedAI: aiResponseEnded
+        causedEscalation: escalationTriggered
     })
 
 }
@@ -65,7 +65,8 @@ const createChat = async(payload: { chatId: string, studentId: string, title: st
              _id: _id,
              title: payload.title,
              studentId: payload.studentId,
-             hasMessages: true
+             hasMessages: true,
+             aiAllowedToRespond: true,
          })
     }
     return existingChat

@@ -85,6 +85,7 @@ export const fetchEscalatedMessagesAction = async( chatId: string | null ): Prom
 export const sendAdminMessageAction = async( payload: { chatId: string, adminId: string, message: string } ): Promise<void> => {
 
     const chatObjId = getObjectId(payload.chatId);
+    await ChatModel.findById(payload.chatId).updateOne({ aiAllowedToRespond: false })
 
     // Student message
     await MessageModel.create({

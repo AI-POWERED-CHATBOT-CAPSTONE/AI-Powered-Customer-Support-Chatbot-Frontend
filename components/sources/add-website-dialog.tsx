@@ -15,7 +15,7 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {axiosErrorHandler, DialogImperative} from "@/lib/utils";
 import {useMutation} from "@tanstack/react-query";
-import {addFilesAction, addWebsiteAction} from "@/app/admin/chat/actions";
+import {addWebsiteAction} from "@/app/admin/chat/actions";
 import {toast} from "sonner";
 import {LoaderCircleIcon} from "lucide-react";
 import {useDataSourcesStore} from "@/store/use-data-sources-store";
@@ -68,9 +68,9 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
 
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={setOpen} >
 
-            <DialogContent className="">
+            <DialogContent>
                 <form onSubmit={handleSubmit(submitHandler)}>
                     <DialogHeader>
                         <DialogTitle>Add Website Link</DialogTitle>

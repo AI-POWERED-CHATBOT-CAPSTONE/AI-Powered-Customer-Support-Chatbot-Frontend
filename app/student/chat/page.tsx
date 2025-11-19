@@ -7,11 +7,11 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import {fetchChatMessages, sendMessage} from "@/app/student/chat/actions";
 import {axiosErrorHandler, queryClient} from "@/lib/utils";
 import {IMessage, IMessageDTO} from "@/database/models/message-model";
-import {tempStudent} from "@/lib/constants";
 import ListLoader from "@/components/ui/list-loader";
 import {Suspense, useCallback, useEffect, useRef} from "react";
 import {useStudentChatStore} from "@/store/use-student-chat-store";
 import {Button} from "@/components/ui/button";
+import {useUser} from "@auth0/nextjs-auth0";
 
 function StudentChatPage() {
     return (
@@ -26,6 +26,7 @@ function StudentChatPageView() {
     const chatId = searchParams.get('chatId')
     const setEventCaller = useStudentChatStore((state) => state.setEvent)
     const containerRef = useRef<HTMLDivElement>(null)
+    const { user } = useUser()
 
 
     useEffect(() => {
@@ -61,7 +62,7 @@ function StudentChatPageView() {
     const { mutate, isPending: isPendingSendMessage } = useMutation({
         mutationKey: ['send-student-message'],
         mutationFn: (request: { chatId: string, text: string }) => sendMessage({
-            chatId: request.chatId, studentId: tempStudent.extId, message: request.text,  isFirst: Boolean(!(data && data.length > 0))
+            chatId: request.chatId, studentId: user?.sub || '', message: request.text,  isFirst: Boolean(!(data && data.length > 0))
         }),
         onSuccess: async (res) => {
             console.log("response:", res)
@@ -110,7 +111,7 @@ function StudentChatPageView() {
                             data && data.map((message: IMessageDTO) => {
                                 return (
                                     <li key={message._id.toString()}>
-                                        <ChatBubble isSender={message.sentBy == "student"}  sentBy={message.sentBy} message={message}>
+                                        <ChatBubble isSender={message.sentBy === "student"}  sentBy={message.sentBy} message={message}>
                                             { message.text }
                                         </ChatBubble>
                                     </li>
@@ -123,7 +124,7 @@ function StudentChatPageView() {
             </div>
             <div className="p-4">
                 { isPendingSendMessage &&
-                    (<div className={"max-w-3xl mx-auto py-3"}>
+                    (<div className={"max-w-3xl mx-auto pb-3"}>
                         <ListLoader className={""}>Thinking ....</ListLoader>
                     </div>)
                 }

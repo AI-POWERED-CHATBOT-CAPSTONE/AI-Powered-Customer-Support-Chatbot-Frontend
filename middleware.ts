@@ -1,23 +1,47 @@
 import {NextRequest, NextResponse} from "next/server";
-import { auth0 } from "./lib/auth0";
+import {auth0, ROLES_CLAIM} from "./lib/auth0";
 
 export async function middleware(request: NextRequest) {
-    console.log("customLog","middleware called ....")
 
     const res: NextResponse = await auth0.middleware(request);
-    if (res && res !== NextResponse.next()) {
-        // Auth0 handled the request (e.g., redirected to auth/login)
-        console.log("customLog","should redirect ....")
-        const redirectUrl = res.headers.get("Location");
-        console.log("customLog", "Auth0 redirecting to:", redirectUrl);
+    const session = await auth0.getSession(request);
+    if (request.nextUrl.pathname.startsWith("/auth")) {
+
+        // console.log("--- session: ----", session)
+        // if (request.nextUrl.pathname.startsWith("/auth/callback")) {
+        //     if (session) {
+        //         console.log("--- auth/callback: called with session ----",)
+        //         const existing = await UserModel.findOne({ extId: session?.user.sub })
+        //         if (!existing) {
+        //             // save user details
+        //             UserModel.create({ extId: session?.user.sub, name: session?.user.name, email: session?.user.email}).catch(console.error);
+        //         }
+        //     }
+        //
+        // }
         return res;
     }
 
-    const session = await auth0.getSession(request);
-    console.log("customLog","session", session);
-    if (!session?.user) {
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+
+    if (request.nextUrl.pathname.startsWith("/student")) {
+        if (!session?.user) {
+            return NextResponse.redirect(new URL("/auth/login?returnTo=/student/chat", request.url));
+        }
     }
+
+    if (request.nextUrl.pathname.startsWith("/admin")) {
+        if (!session?.user) {
+            return NextResponse.redirect(new URL("/auth/login?returnTo=/admin/chat", request.url));
+        }
+
+        const roles = (session.user[ROLES_CLAIM] as string[]) || [];
+        console.log("customLog -> roles:", roles);
+        // Logged in but not admin → forbidden
+        if (!roles.includes("admin")) {
+            return NextResponse.redirect(new URL("/403?page=admin", request.url));
+        }
+    }
+
 
     return NextResponse.next();
 

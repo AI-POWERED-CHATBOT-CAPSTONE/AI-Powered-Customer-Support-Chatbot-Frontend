@@ -1,10 +1,21 @@
+"use client"
+
 import AppLogo from "@/components/ui/app-logo";
 import {TypographyH4, TypographySmall} from "@/components/ui/typography";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import Link from "next/link";
-import {tempStudent, tempSupport} from "@/lib/constants";
+import {useUser} from "@auth0/nextjs-auth0";
+import {useRouter} from "next/navigation";
+import {Button} from "@/components/ui/button";
 
 export default function AdminNav() {
+    const { user } = useUser()
+    const router = useRouter()
+
+    const handleLogout = () => {
+        router.push("/auth/logout")
+    }
+
     return (
         <>
             <div className={"fixed w-full py-2"}>
@@ -18,8 +29,8 @@ export default function AdminNav() {
                             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <TypographySmall>{ tempSupport.email} </TypographySmall>
-                        <Link href={"/"} className={"font-bold text-sm text-red-500"}> Logout </Link>
+                        <TypographySmall>{ user?.email || '' } </TypographySmall>
+                        <Button onClick={handleLogout} variant={"ghost"} className={"font-bold text-sm text-red-500"}> Logout </Button>
                     </div>
                 </div>
             </div>

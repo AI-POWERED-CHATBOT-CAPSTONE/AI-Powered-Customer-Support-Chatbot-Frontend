@@ -17,7 +17,9 @@ export type DialogImperative = {
 
 export const axiosErrorHandler = (error: Error) => {
   const axiosError = error as AxiosError<{ message: string }>;
-  toast.error(axiosError.response?.data?.message || "Sorry! connection failed")
+  toast.error(axiosError.response?.data?.message || String(error)  || "Sorry! connection failed", {
+    duration: 10000,
+  })
 }
 
 export const timeAgo = (date?: Date) => {

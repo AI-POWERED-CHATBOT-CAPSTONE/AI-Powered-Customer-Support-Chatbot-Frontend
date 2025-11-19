@@ -6,7 +6,7 @@ export interface IMessage {
     text: string;
     senderId: string,
     sentBy: string,
-    endedAI: boolean
+    causedEscalation: boolean
 }
 
 export interface IMessageDTO {
@@ -15,7 +15,7 @@ export interface IMessageDTO {
     text: string;
     senderId: string,
     sentBy: string,
-    endedAI: boolean
+    causedEscalation: boolean,
 }
 
 const messageSchema = new Schema<IMessage>({
@@ -23,7 +23,7 @@ const messageSchema = new Schema<IMessage>({
     text: String,
     senderId: String,
     sentBy: String,
-    endedAI: { type: Boolean, default: false },
+    causedEscalation: { type: Boolean, default: false },
 }, { timestamps: true });
 
 export const MessageModel = models.Message<IMessage> || model<IMessage>('Message', messageSchema)

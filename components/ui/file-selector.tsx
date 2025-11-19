@@ -14,7 +14,7 @@ type Props = {
     multiple?: boolean
 }
 
-const FileSelector = ({ title, onChange, accept = "pdf/*", multiple = true }: Props, ref: Ref<FileSelectorImperatives>) =>  {
+const FileSelector = ({ title, onChange, accept = "*/*", multiple = true }: Props, ref: Ref<FileSelectorImperatives>) =>  {
 
     const [files, setFiles] = useState<File[]>([]);
 
@@ -46,7 +46,7 @@ const FileSelector = ({ title, onChange, accept = "pdf/*", multiple = true }: Pr
     };
 
     return (
-        <div className="w-full">
+        <div className="w-full max-w-full]">
 
             <div className="w-full mb-5">
                 <label
@@ -63,7 +63,7 @@ const FileSelector = ({ title, onChange, accept = "pdf/*", multiple = true }: Pr
                         </svg>
                     </div>
                     <h2 className="text-center text-gray-400 text-xs font-normal mb-1">
-                        PDFs smaller than 15MB
+                        Files smaller than 1MB
                     </h2>
                     <h4 className="text-center text-gray-900 text-sm font-medium">
                         {title || 'Click to browse your files' }
@@ -79,13 +79,13 @@ const FileSelector = ({ title, onChange, accept = "pdf/*", multiple = true }: Pr
             </div>
 
             {/* Uploaded File List */}
-            <div className="space-y-4 mb-4">
+            <div className="w-full space-y-4 mb-4 ">
                 {files.map((file, index) => (
                     <div
                         key={index}
                         className="flex items-center justify-between border border-gray-300 rounded-md p-3"
                     >
-                        <p className="text-sm text-gray-700 truncate">{file.name}</p>
+                        <p className="text-sm text-gray-700">{file.name}</p>
                         <X
                             className="w-4 h-4 text-gray-600 cursor-pointer"
                             onClick={() => removeFile(index)}
