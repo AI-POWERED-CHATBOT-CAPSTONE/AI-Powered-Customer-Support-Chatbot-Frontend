@@ -1,7 +1,7 @@
 # **AI-Powered Customer Support Chatbot**
 
 An intelligent 24/7 virtual assistant designed for Memorial University of Newfoundland.
-It answers FAQs on financial based information, and streamlines support services—improving accessibility, reducing wait times, and enhancing student experience.
+It answers FAQs on financial based information, and streamlines support services, improving accessibility, reducing wait times, and enhancing student experience.
 
 ---
 
