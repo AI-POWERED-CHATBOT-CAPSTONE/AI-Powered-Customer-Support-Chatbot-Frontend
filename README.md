@@ -1,9 +1,72 @@
-# AI-Powered-Customer-Support-Chatbot
-An intelligent 24/7 virtual assistant that answers FAQs, guides students on admissions, registration, and campus services, and streamlines support at Memorial University of Newfoundland, improving accessibility and reducing wait times.
+# **AI-Powered Customer Support Chatbot**
 
-## Getting Started
+An intelligent 24/7 virtual assistant designed for Memorial University of Newfoundland.
+It answers FAQs, guides students through admissions and registration, and streamlines support services—improving accessibility, reducing wait times, and enhancing student experience.
 
-First, run the development server:
+---
+
+![Screenshot-1](docs/screen-shot-1.png)
+![Screenshot-2](docs/screen-shot-2.png)
+![Screenshot-3](docs/screen-shot-3.png)
+
+---
+
+## **Key Features**
+
+* **AI-Driven Support** – Provides instant responses to common student questions.
+* **Admissions & Registration Guidance** – Offers step-by-step help for new and returning students.
+* **Campus Services Assistance** – Directs users to housing, fees, academic advising, and other services.
+* **24/7 Availability** – Ensures support at any time without human delays.
+* **Next.js Frontend** – Modern, fast UI with real-time interactions.
+* **Expandable Architecture** – Easily integrate more features, APIs, or university datasets.
+
+---
+
+## **Setup Instructions**
+
+### **1. Clone the Repository**
+
+```bash
+git clone https://github.com/your-username/AI-Powered-Customer-Support-Chatbot.git
+cd AI-Powered-Customer-Support-Chatbot
+```
+
+### **2. Install Dependencies**
+
+Choose your package manager:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### **3. Configure Environment Variables**
+
+Create a `.env.local` file in the project root:
+
+```
+AUTH0_SECRET='XXX-XXXX'
+APP_BASE_URL='http://localhost:3000'
+AUTH0_DOMAIN=''XXX-XXXX'
+AUTH0_CLIENT_ID='XXX-XXXX'
+AUTH0_CLIENT_SECRET=''XXX-XXXX'
+# 'If your application is API authorized add the variables AUTH0_AUDIENCE and AUTH0_SCOPE'
+AUTH0_AUDIENCE='XXX-XXXX'
+AUTH0_SCOPE='XXX-XXXX'
+
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
+
+MONGO_DB_USERNAME='XXX-XXXX'
+MONGO_DB_PASSWORD='XXX-XXXX'
+MONGO_DB_CONNECTION='XXX-XXXX'
+```
+
+### **4. Run the Development Server**
 
 ```bash
 npm run dev
@@ -15,23 +78,36 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **[http://localhost:3000](http://localhost:3000)** to view the app in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## **Usage**
 
-## Learn More
+Once the server is running:
 
-To learn more about Next.js, take a look at the following resources:
+* The chatbot interface loads from the chatbot widget on the homepage.
+* Users can login as student or Admin
+* Users can type questions related to financial services and fees.
+* The chatbot generates accurate and helpful responses in real time.
+* Admin can upload useful documents and links to train the AI.
+* Admin handles escalated queries.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## **Technologies Used**
 
-## Deploy on Vercel
+* **Next.js 14 (App Router)**
+* **TypeScript**
+* **next/font & Geist Font**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## **Deployment**
+
+Deploy easily using **CI/CD** to our custom server:
+
+
+More details:
+[https://mungpt-capstone.web.app/](https://mungpt-capstone.web.app/)
+
