@@ -3,7 +3,7 @@ import React from "react";
 import {IMessageDTO} from "@/database/models/message-model";
 import {cn} from "@/lib/utils";
 
-function ChatBubble({ children, isSender, sentBy = "student", message }: { children: React.ReactNode, isSender: boolean, sentBy?: string, message: IMessageDTO} ) {
+function ChatBubble({ isSender, sentBy = "student", message }: {isSender: boolean, sentBy?: string, message: IMessageDTO} ) {
 
     console.log("message", {
         isSender,
@@ -12,27 +12,27 @@ function ChatBubble({ children, isSender, sentBy = "student", message }: { child
 
     if (isSender) {
         return (
-            <SenderChatBubble  sentBy={sentBy} message={message}> { children } </SenderChatBubble>
+            <SenderChatBubble  sentBy={sentBy} message={message}/>
         )
     }
 
     return (
-        <ResponseChatBubble sentBy={sentBy}> { children } </ResponseChatBubble>
+        <ResponseChatBubble sentBy={sentBy} message={message} />
     )
 }
 
 // for recipient
-function ResponseChatBubble({ children, sentBy }: { children: React.ReactNode, sentBy?: string }) {
+function ResponseChatBubble({ message, sentBy }: { message: IMessageDTO, sentBy?: string }) {
     return (
         <div>
-            <TypographyP> {children} </TypographyP>
+            <TypographyP> {message.text} </TypographyP>
             <SentByText sentBy={sentBy} />
         </div>
     )
 }
 
 // for sender
-function SenderChatBubble({ children, sentBy, message }: { children: React.ReactNode, sentBy?: string, message: IMessageDTO }) {
+function SenderChatBubble({ sentBy, message }: { sentBy?: string, message: IMessageDTO }) {
     return (
         <div className="flex justify-end w-full px-4 py-2">
             <div
@@ -45,7 +45,7 @@ function SenderChatBubble({ children, sentBy, message }: { children: React.React
           select-text
         "
             >
-                <span style={ {color: message.causedEscalation ? "darkred": "black" } }>{children}</span>
+                <span style={ {color: message.causedEscalation ? "darkred": "black" } }>{message.text}</span>
                 <SentByText sentBy={sentBy} className={"place-content-end"} />
             </div>
         </div>

@@ -23,7 +23,7 @@ export default function SourcesPanel() {
     return (
             <div className={"bg-white h-full w-full rounded-lg space-y-8 overflow-hidden"}>
                 <div className={"py-2 px-4 flex items-center justify-between border-b"}>
-                    <TypographySmall className={"font-bold text-red-500"}>Sources</TypographySmall>
+                    <TypographySmall className={"font-bold text-blue-500"}>Sources</TypographySmall>
                     <div className={"flex divide-x"}>
                         <div>
                             <Button onClick={handleAddFilesClick} variant={"ghost"} ><FileIcon size={18} /> Add Files</Button>

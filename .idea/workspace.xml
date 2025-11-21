@@ -5,38 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe066c5d-8758-4b09-b738-a7210db2443c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/403/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-10-31,_4_24 pm_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-10-31__4_24pm__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/version/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/admin/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/chat/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/admin/chat/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/chat/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/student/chat/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/student/chat/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/student/chat/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/chat-panel/chat-bubble.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/chat-panel/chat-bubble.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/chat-panel/chat-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/chat-panel/chat-input.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/nav/admin-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/admin-nav.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/auth-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/auth-nav.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/pre-auth-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/pre-auth-nav.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sidebar/sidebar-footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sidebar-footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sidebar/sidebar-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sidebar-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/sources/add-files-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/add-files-dialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/sources/add-website-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/add-website-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/app-logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/app-logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sources/source-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/source-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sources/sources-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sources/sources-panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/file-selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/file-selector.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/logout-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/logout-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/website/get-started.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/website/get-started.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/website/intro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/website/intro.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/db.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/models/chat-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/models/chat-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/models/message-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/models/message-model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/auth0.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth0.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +112,8 @@
       <workItem from="1763165959232" duration="3411000" />
       <workItem from="1763449364401" duration="18197000" />
       <workItem from="1763500970137" duration="581000" />
-      <workItem from="1763537336268" duration="14080000" />
+      <workItem from="1763537336268" duration="21289000" />
+      <workItem from="1763616322743" duration="13693000" />
     </task>
     <servers />
   </component>

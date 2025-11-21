@@ -1,6 +1,8 @@
 "use client"
 import {ChangeEvent, forwardRef, Ref, useEffect, useImperativeHandle, useState} from "react";
 import { X } from "lucide-react";
+import {MAX_TOTAL_SIZE_MB} from "@/lib/constants";
+import {formatFileSize} from "@/lib/utils";
 
 export type FileSelectorImperatives = {
     clear: () => void
@@ -63,7 +65,7 @@ const FileSelector = ({ title, onChange, accept = "*/*", multiple = true }: Prop
                         </svg>
                     </div>
                     <h2 className="text-center text-gray-400 text-xs font-normal mb-1">
-                        Files smaller than 1MB
+                        Files smaller than {MAX_TOTAL_SIZE_MB}MB
                     </h2>
                     <h4 className="text-center text-gray-900 text-sm font-medium">
                         {title || 'Click to browse your files' }
@@ -85,7 +87,8 @@ const FileSelector = ({ title, onChange, accept = "*/*", multiple = true }: Prop
                         key={index}
                         className="flex items-center justify-between border border-gray-300 rounded-md p-3"
                     >
-                        <p className="text-sm text-gray-700">{file.name}</p>
+                        <p className="text-sm text-gray-700"><span className={"text-blue-500 font-bold"}>{`[ ${formatFileSize(file.size)} ] `}</span> {file.name}
+                        </p>
                         <X
                             className="w-4 h-4 text-gray-600 cursor-pointer"
                             onClick={() => removeFile(index)}

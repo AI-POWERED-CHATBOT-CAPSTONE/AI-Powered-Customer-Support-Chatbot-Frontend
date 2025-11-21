@@ -1,5 +1,4 @@
 import { Auth0Client } from "@auth0/nextjs-auth0/server";
-import {UserModel} from "@/database/models/user-model";
 
 export const ROLES_CLAIM = "https://mungpt.rentmux.com/roles"
 

@@ -4,8 +4,7 @@ import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
 import {useRouter} from "next/navigation";
 import {useUser} from "@auth0/nextjs-auth0";
-import {Separator} from "@/components/ui/separator";
-import {SeparatorHorizontalIcon, SeparatorVertical} from "lucide-react";
+import {SeparatorVertical} from "lucide-react";
 
 function LogoutButton({ className }: { className?: string }) {
     const router = useRouter();

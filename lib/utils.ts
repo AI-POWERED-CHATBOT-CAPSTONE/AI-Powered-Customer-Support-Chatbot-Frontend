@@ -18,7 +18,7 @@ export type DialogImperative = {
 export const axiosErrorHandler = (error: Error) => {
   const axiosError = error as AxiosError<{ message: string }>;
   toast.error(axiosError.response?.data?.message || String(error)  || "Sorry! connection failed", {
-    duration: 10000,
+    dismissible: true
   })
 }
 
@@ -29,6 +29,24 @@ export const timeAgo = (date?: Date) => {
 export const getUUId = () => {
   return uuidv4()
 }
+
+export function formatFileSize(bytes: number): string {
+  if (bytes === 0) return "0 B";
+
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let index = 0;
+  let value = bytes;
+
+  while (value >= 1000 && index < units.length - 1) {
+    value /= 1000;
+    index++;
+  }
+
+  const formatted = value.toFixed(1).replace(/\.0$/, "");
+
+  return `${formatted} ${units[index]}`;
+}
+
 
 export const getObjectId = (id?: string | null) => {
   if (id) {

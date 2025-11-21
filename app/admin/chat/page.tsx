@@ -37,12 +37,12 @@ function AdminChatPageView() {
         queryFn: () => fetchEscalatedMessagesAction(chatId),
     })
 
-    const refreshItems = async (chatId: string | null) => {
+    const refreshItems = useCallback(async (chatId: string | null) => {
         await queryClient.invalidateQueries({ queryKey: ['fetch-escalated-chat-messages', chatId] }).catch((error) => {
             console.log("error syncing records: ", error.message)
         });
         scrollUpChat()
-    }
+    }, [])
 
     const { mutate, isPending: isPendingSendMessage } = useMutation({
         mutationKey: ['send-admin-message'],
@@ -77,7 +77,7 @@ function AdminChatPageView() {
             unsubscribe()
         };
 
-    }, [chatId]);
+    }, [chatId, refreshItems]);
 
 
     useEffect(() => {
@@ -103,13 +103,13 @@ function AdminChatPageView() {
                     <ul className={"max-w-3xl mx-auto list-none space-y-8"}>
                         {
                             data && data.map((item: IMessageDTO) => {
-                                const msg = item.text
+                                // const msg = item.text
                                 // if (item.causedEscalation) {
                                 //     msg = "This conversation was escalated to the support team"
                                 // }
                                 return (
                                     <li key={item._id}>
-                                        <ChatBubble isSender={item.sentBy !== "student"} sentBy={item.sentBy} message={item}>{ msg }</ChatBubble>
+                                        <ChatBubble isSender={item.sentBy !== "student"} sentBy={item.sentBy} message={item}/>
                                     </li>
                                 )
                             })
@@ -124,7 +124,7 @@ function AdminChatPageView() {
                     }
                     { chatId ? (
                         <ChatInput hasLabel={false} onSend={sendMessageHandler} placeholder={"Send message..."}/>
-                    ): <TypographyP className={"text-center py-8 text-red-500"}>Select a conversation on the left sidebar to chat</TypographyP>}
+                    ): <TypographyP className={"text-center py-8"}>Select a conversation on the left sidebar to chat</TypographyP>}
 
                 </div>
             </div>

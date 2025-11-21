@@ -26,17 +26,22 @@ RUN \
 FROM node:24-alpine AS builder
 
 WORKDIR /app
-
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Copy Next.js config first to bust cache when it changes
+COPY next.config.ts ./
+
+# Copy deps
 COPY --from=deps /app/node_modules ./node_modules
+
+# Copy app source
 COPY . .
 
 # Ensure Next.js build cache directory exists
 RUN mkdir -p .next/cache
 
-# Build full Next.js app (NON-STANDALONE)
+# Build full Next.js app
 RUN npm run build
 
 
@@ -55,12 +60,13 @@ RUN addgroup -g 1001 nodejs && \
     adduser -u 1001 -G nodejs -s /bin/sh -D nextjs
 
 # Copy production files
+COPY --from=builder /app/next.config.ts ./next.config.ts
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
 
-# Ensure Next.js cache exists + proper permissions
+# Fix permissions
 RUN mkdir -p .next/cache && \
     chown -R nextjs:nodejs /app
 
@@ -68,5 +74,4 @@ USER nextjs
 
 EXPOSE 3001
 
-# Run Next.js normally (NOT standalone)
 CMD ["npm", "run", "start"]

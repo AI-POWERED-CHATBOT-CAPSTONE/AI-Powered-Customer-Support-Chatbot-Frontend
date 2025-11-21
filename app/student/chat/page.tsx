@@ -6,11 +6,10 @@ import { useSearchParams } from 'next/navigation'
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {fetchChatMessages, sendMessage} from "@/app/student/chat/actions";
 import {axiosErrorHandler, queryClient} from "@/lib/utils";
-import {IMessage, IMessageDTO} from "@/database/models/message-model";
+import {IMessageDTO} from "@/database/models/message-model";
 import ListLoader from "@/components/ui/list-loader";
 import {Suspense, useCallback, useEffect, useRef} from "react";
 import {useStudentChatStore} from "@/store/use-student-chat-store";
-import {Button} from "@/components/ui/button";
 import {useUser} from "@auth0/nextjs-auth0";
 
 function StudentChatPage() {
@@ -28,6 +27,13 @@ function StudentChatPageView() {
     const containerRef = useRef<HTMLDivElement>(null)
     const { user } = useUser()
 
+    const refreshItems = useCallback(async (chatId: string | null) => {
+        await queryClient.invalidateQueries({ queryKey: ['fetch-chat-messages', chatId] }).catch((error) => {
+            console.log("error syncing records: ", error.message)
+        });
+        scrollUpChat()
+    }, [])
+
 
     useEffect(() => {
 
@@ -44,19 +50,13 @@ function StudentChatPageView() {
             unsubscribe()
         };
 
-    }, [chatId]);
+    }, [chatId, refreshItems]);
 
     const { isPending, data } = useQuery({
         queryKey: ['fetch-chat-messages', chatId],
         queryFn: () => fetchChatMessages(chatId),
     })
 
-    const refreshItems = async (chatId: string | null) => {
-        await queryClient.invalidateQueries({ queryKey: ['fetch-chat-messages', chatId] }).catch((error) => {
-            console.log("error syncing records: ", error.message)
-        });
-        scrollUpChat()
-    }
 
 
     const { mutate, isPending: isPendingSendMessage } = useMutation({
@@ -111,9 +111,7 @@ function StudentChatPageView() {
                             data && data.map((message: IMessageDTO) => {
                                 return (
                                     <li key={message._id.toString()}>
-                                        <ChatBubble isSender={message.sentBy === "student"}  sentBy={message.sentBy} message={message}>
-                                            { message.text }
-                                        </ChatBubble>
+                                        <ChatBubble isSender={message.sentBy === "student"}  sentBy={message.sentBy} message={message} />
                                     </li>
                                 )
                             })

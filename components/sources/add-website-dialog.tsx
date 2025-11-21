@@ -33,6 +33,7 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
         return {
             open() {
                 setOpen(true)
+                clearErrors()
             },
         }
     })
@@ -54,6 +55,7 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
         handleSubmit,
         register,
         reset,
+        clearErrors,
         formState: { errors },
     } = useForm<AddWebsiteFormInput>()
 
@@ -82,7 +84,17 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
                     <div className="grid gap-4 pb-8">
                         <div className="grid gap-3">
                             <Label htmlFor="link-1">Website url</Label>
-                            <Input id="link-1" { ...register("link", { required: "This field cannot be empty" }) } />
+                            <Input id="link-1" { ...register("link", { required: "This field cannot be empty", validate: (val) => {
+                                    const errMessage = "Invalid website link"
+                                    try {
+                                        const url = new URL(val);
+                                        const valid = url.protocol === "http:" || url.protocol === "https:";
+                                        if (valid) {return  true}
+                                        return errMessage
+                                    } catch {
+                                        return errMessage;
+                                    }
+                                } }) } />
                             { errors.link && (<div>{errors.link.message}</div>)}
                         </div>
                     </div>
@@ -91,7 +103,9 @@ export default forwardRef(function AddWebsiteDialog(_, ref: ForwardedRef<DialogI
                             <Button type={"button"} variant="outline">Cancel</Button>
                         </DialogClose>
                         <Button type="submit" disabled={isPending}>
-                            { isPending ? <LoaderCircleIcon className={"animate-spin"} /> : <span>Save changes</span>}
+                            { isPending ? <span className={"inline-flex gap-2 items-center"}> <LoaderCircleIcon
+                                    className={"animate-spin"}/> <span>Training in progress</span> </span> :
+                                <span>Save changes</span>}
                         </Button>
                     </DialogFooter>
                 </form>

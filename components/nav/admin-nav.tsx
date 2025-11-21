@@ -3,7 +3,6 @@
 import AppLogo from "@/components/ui/app-logo";
 import {TypographyH4, TypographySmall} from "@/components/ui/typography";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import Link from "next/link";
 import {useUser} from "@auth0/nextjs-auth0";
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/ui/button";
@@ -23,6 +22,7 @@ export default function AdminNav() {
                     <div className={"flex gap-4 items-center"}>
                         <AppLogo size={30} className={"text-sm"} logoOnly={true}/>
                         <TypographyH4>Admin Support</TypographyH4>
+                        <TypographySmall className={"text-red-800 font-bold"}>PAGE NOT RESTRICTED FOR DEMO PURPOSES.</TypographySmall>
                     </div>
                     <div className={"inline-flex gap-4 items-center"}>
                         <Avatar>
